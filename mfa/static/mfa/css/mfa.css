@@ -5,7 +5,7 @@
     color:green;
 }
 
-.panel-body>.paragraph{
+.panel-body .paragraph{
     padding-left: 15px;
 }
 .panel-body{
