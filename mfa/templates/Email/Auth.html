@@ -1,10 +1,8 @@
 {% extends "mfa_auth_base.html" %}
+{% load static %}
 {% block head %}
-    <style>
-    .row{
-        margin-left: 15px;
-    }
-    </style>
+    <link href="{% static 'mfa/css/mfa.css' %}" rel="stylesheet"> {% comment %} .row{margin-left: 15px;} class "marginl15"{% endcomment %}
+    <link href="{% static 'mfa/css/margin.css' %}" rel="stylesheet"> 
 {% endblock %}
 {% block content %}
 <br/>

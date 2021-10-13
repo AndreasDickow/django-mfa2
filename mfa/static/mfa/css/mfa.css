@@ -11,6 +11,42 @@
 .panel-body{
     align-items: center;
 }
+.font10{
+    font-size: 10px;
+}
+.text-uppercase{
+    text-transform: uppercase;
+}
+.width95{
+    width: 95%;
+}
+.paddingt10{
+    padding-top: 10px;
+}
+.paddingl0{
+    padding-left: 0px;
+}
+.paddingl25{
+    padding-left: 25px;
+}
+.paddingr30{
+    padding-right: 30px
+}
+.marginl15{
+    margin-left: 15px;
+}
+.displaynone{
+    display: none;
+}
+.displayinline{
+    display: inline;
+}
+.color-grey{
+    color: #333333;
+}
+.color-red{
+    color: red;
+}
 #popUpModal{
     top: 40px;
 }

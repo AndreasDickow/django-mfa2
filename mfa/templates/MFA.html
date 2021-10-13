@@ -67,11 +67,11 @@
                <td>{% if key.key_type in HIDE_DISABLE %}
                    ----
                    {% else %}
-                    <a href="javascript:void(0)" onclick="deleteKey({{ key.id }},'{{ key.key_type }}','{% url 'mfa_delKey' %}')"> <span class="fa fa-trash"></span></a></td>
+                    <a href="javascript:void(0)" value="{{ key.id }}", name="{{ key.key_type }}", url="{% url 'mfa_delKey' %}" id="delete-key-mfa"> <span class="fa fa-trash"></span></a></td> {% comment %} a href="javascript:void(0)" onclick="deleteKey({{ key.id }},'{{ key.key_type }}','{% url 'mfa_delKey' %}')" {% endcomment %}
                     {% endif %}
            </tr>
        {% empty %}
-           <tr><td colspan="7" align="center">{% trans 'You didn't have any keys yet.' %}</td> </tr>
+           <tr><td colspan="7" align="center">{% trans 'You did not have any keys yet.' %}</td> </tr>
        {% endfor %}
         </table>
     </div>

@@ -1,18 +1,10 @@
-<script type="application/javascript">
-    function send_totp() {
-        $.ajax({"url":"{% url 'totp_recheck' %}", method:"POST",dataType:"JSON",
-            data:{"csrfmiddlewaretoken":"{{ csrf_token }}","otp":$("#otp").val()},
-         success:function (data) {
-                            if (data["recheck"])
-                                mfa_success_function();
-                            else {
-                                mfa_failed_function();
-                            }
-                        }
-        })
+{% load static %}
 
-    }
-</script>
+{% block head %}
+    <script type="application/javascript" src="{% static 'mfa/js/TOTP/recheck.js' %}"></script>
+    <link href="{% static 'mfa/css/mfa.css' %}" rel="stylesheet">
+{% endblock %}
+
 <div class="row">
 
 <div class="col-sm-10 col-sm-offset-1 col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
@@ -57,14 +49,14 @@
 
           <div class="form-group">
 
-	      <input type="{% if mode == "auth" %}submit{% elif mode == 'recheck'  %}button{% endif %}" {% if mode == "recheck" %}onclick="send_totp()" {% endif %} class="btn btn-lg btn-success btn-block" value="Sign in">
+	      <input id="recheck-send-totp" type="{% if mode == "auth" %}submit{% elif mode == 'recheck'  %}button{% endif %}" class="btn btn-lg btn-success btn-block" value="Sign in"> {% comment %} {% if mode == "recheck" %}onclick="send_totp()" {% endif %} {% endcomment %}
 	      </div>
       </div>
       </fieldset>
       </FORM>
       </div>
         <div class="row">
-        <div class="col-md-6" style="padding-left: 25px">
+        <div class="col-md-6 paddingl25">
             {% if request.session.mfa_methods|length > 1 %}
                 <a href="{%  url 'mfa_methods_list' %}">Select Another Method</a>
             {% endif %}

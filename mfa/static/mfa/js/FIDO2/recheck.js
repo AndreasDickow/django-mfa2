@@ -1,8 +1,8 @@
 function authen()
 {
-const begin_url = $('#begin').value;
-const complete_url = $('u2f_login').attr('action');
-const mode = $('u2f_login').attr('name') === 'complete'?'auth':'recheck';
+const begin_url = $('#begin').attr('value');
+const complete_url = $('#u2f_login').attr('action');
+const mode = $('#u2f_login').attr('name') === 'complete'?'auth':'recheck';
 fetch(begin_url, {
 method: 'GET',
 }).then(function(response) {
@@ -51,7 +51,8 @@ body:res,
          })
 
 }
-$(document).ready(function () {
+
+document.addEventListener('DOMContentLoaded', function () {
 if (location.protocol != 'https:') {
     $("#main_paragraph").addClass("alert alert-danger")
     $("#main_paragraph").html("FIDO2 must work under secure context")

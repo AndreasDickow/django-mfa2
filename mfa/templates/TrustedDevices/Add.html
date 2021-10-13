@@ -1,28 +1,8 @@
 {% extends "mfa_auth_base.html" %}
+{% load static %}
 {% block head %}
-    <script type="application/javascript">
-    function checkFlag() {
-        if ($("#agree").is(":checked"))
-        return true;
-        else
-          alert("Please agree to the statement first");
-        return false;
-    }
-    function checkTrusted() {
-        $.ajax({
-            url:"{% url 'td_checkTrusted' %}",
-            success:function (data) {
-                if (data == "OK")
-                    window.location.href="{% url 'td_securedevice' %}";
-                else
-                    setTimeout('checkTrusted()',2000)
-            }
-
-        })
-
-    }
-    $(document).ready(checkTrusted())
-    </script>
+    <link href="{% static 'mfa/css/mfa.css' %}" rel="stylesheet">
+    <script type="application/javascript" src="{% static 'mfa/js/TrustedDevices/add.js' %}"></script>
 {% endblock %}
 {% block content %}
     <br/>
@@ -47,7 +27,7 @@
 
       {% else %}
             <div class="alert alert-warning">Please make sure you are not in private (incognito) mode <i class="fal fa-user-secret"></i></div>
-      <FORM METHOD="POST" ACTION="{% url 'add_td' %}" Id="formLogin" onSubmit="return checkFlag()" name="FrontPage_Form1">
+      <FORM METHOD="POST" ACTION="{% url 'add_td' %}" Id="formLogin" name="FrontPage_Form1"> {% comment %} onSubmit="return checkFlag()" {% endcomment %}
       {% csrf_token %}
           {%  if invalid %}
           <div class="alert alert-danger">
@@ -80,12 +60,12 @@
 		<span class="input-group-addon">
 		<i class="fa fa-key"></i>
 		</span>
-		<input class="form-control" placeholder="e.g GAK-Y2M" id='key' style="text-transform: uppercase" name="key" type="text" size="9" MaxLength="9" value="{{ key }}">
+		<input class="form-control text-uppercase" placeholder="e.g GAK-Y2M" id='key' name="key" type="text" size="9" MaxLength="9" value="{{ key }}">
 		</div>
 	    </div>
            <div class="form-group">
 		<span class="input-group">
-            <input id='agree' name="agree" type="checkbox"><span style="color: red"> I confirm that this device is mine and it is only used by me.</span>
+            <input id='agree' name="agree" type="checkbox"><span class="color-red"> I confirm that this device is mine and it is only used by me.</span>
 
 	    </div>
       {% comment %}

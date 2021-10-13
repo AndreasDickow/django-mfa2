@@ -1,14 +1,11 @@
 {% extends "mfa_auth_base.html" %}
+{% load static %}
 {% block head %}
-    <style>
-    .row{
-        margin-left: 15px;
-    }
-    </style>
+    <link href="{% static 'mfa/css/mfa.css' %}" rel="stylesheet">
+    <link href="{% static 'mfa/css/margin.css' %}" rel="stylesheet"> 
 {% endblock %}
 {% block content %}
 <br/>
 <br/>
 {% include "TOTP/recheck.html" with mode='auth' %}
-
-  {% endblock %}
+{% endblock %}
