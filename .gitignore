@@ -107,3 +107,6 @@ venv.bak/
 
 #test db
 test_db
+
+#vs code
+.vscode/launch.json
