@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% load static %}
 {% block head %}
@@ -8,39 +7,41 @@
     <link href="{% static 'mfa/css/mfa.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
-<br/>
-<br/>
-<div class="container">
-    <div class="col-md-6 col-md-offset-3" id="two-factor-steps">
-        <div class="row" align="center">
-            <h4>Adding Authenticator</h4>
-        </div>
+    <br/>
+    <br/>
+    <div class="container">
         <div class="row">
-            <p>Scan the image below with the two-factor authentication app on your <a href="javascript:void(0)" id="show-totp">phone/PC</a>. If you can’t use a barcode, {% comment %}onclick="showTOTP()"{% endcomment %}
-                <a href="javascript:void(0)" id="show-key-totp">enter this text</a> instead. {% comment %}onclick="showKey()"{% endcomment %}
-            </p>
-        </div>
-        <div class="row">
-            <div align="center" class="displaynone" id="second_step">
-                <img id="qr"/>
-            </div>
-            <div class="row marginl15">
-                <p><b>Enter the six-digit code from the application</b></p>
-                <p class="font10 color-grey">After scanning the barcode image, the app will display a six-digit code that you can enter below. </p>
-            </div>
-            <div class="row marginl15">
-                <input maxlength="6" size="6" class="form-control displayinline width95" id="answer" placeholder="e.g 785481" data-url="{% url 'get_new_otop' %}"/>
-            </div>
-            <div class="row marginl15">
-                <div class="col-md-6 paddingl0">
-                    <button class="btn btn-success" id="verify-totp" data-url="{% url 'verify_otop' %}">Enable</button> {% comment %}onclick="verify()"{% endcomment %}
+            <div class="col-md-6 col-md-offset-3" id="two-factor-steps">
+                <div class="d-flex justify-content-center">
+                    <h4>Adding Authenticator</h4>
                 </div>
-                <div class="col-md-6 " align="right">
-                    <a href="{% url 'mfa_home' %}"><button class="btn btn-default">Cancel</button></a>
+                <div class="col-md-12">
+                    <p>Scan the image below with the two-factor authentication app on your
+                        <a href="#" id="show-totp">phone/PC</a>. If you can’t use a barcode
+                        <a href="#" id="show-key-totp">enter this text</a>
+                        instead.
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <div class="displaynone d-flex justify-content-center" id="second_step">
+                        <img id="qr"/>
+                    </div>
+                    <div>
+                        <p><b>Enter the six-digit code from the application</b></p>
+                        <p class="font10 color-grey">After scanning the barcode image, the app will display a six-digit code that you can enter below.</p>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <input maxlength="6" size="6" class="form-control displayinline " id="answer" placeholder="e.g 785481" data-url="{% url 'get_new_otop' %}"/>
+                    </div>
+                    <div class="mt-2 d-flex justify-content-between">
+                            <button class="btn btn-success" id="verify-totp" data-url="{% url 'verify_otop' %}">Enable</button>
+                            <a href="{% url 'mfa_home' %}">
+                                <button class="btn btn-default">Cancel</button>
+                            </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{% include "modal.html" %}
+    {% include "modal.html" %}
 {% endblock %}
