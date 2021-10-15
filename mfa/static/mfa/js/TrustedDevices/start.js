@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('send-email-trusted')
             .addEventListener('click', function sendEmail() {
@@ -7,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 $("#modal-body").html("Sending Email, Please wait....");
                 $("#popUpModal").modal();
                 $.ajax({
-                    "url":"{% url 'td_sendemail' %}",
+                    url:$('input#td_sendemail').data('url'),
                     success:function (data) {
                         alert(data);
                         $("#popUpModal").modal('toggle')
@@ -22,16 +20,14 @@ function checkMFA() {
     recheck_mfa(trustDevice,failedMFA,true)
 }
 function trustDevice() {
-
     $.ajax(
         {
-
-            "url":"{% url 'td_trust_device' %}",
+            url:$('input#td_trust_device').data('url'),
             success: function (data) {
                 if (data == "OK")
                 {
                     alert("Your are done, your device should show final confirmation")
-                    window.location.href="{% url 'mfa_home' %}"
+                    window.location.href=$('input#mfa_home').data('url')
 
                 }
             }
@@ -40,7 +36,8 @@ function trustDevice() {
 }
 function getUserAgent() {
     $.ajax({
-        "url":"{% url 'td_get_useragent' %}",success: function(data)
+        url:$('input#td_get_uesr_agent').data('url'),
+        success: function(data)
         {
             if (data == "")
                 setTimeout('getUserAgent()',5000)
@@ -54,7 +51,6 @@ function getUserAgent() {
             }
         }
     })
-
 }
 $(document).ready(getUserAgent())
 

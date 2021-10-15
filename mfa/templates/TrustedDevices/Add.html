@@ -52,7 +52,6 @@
 		<i class="glyphicon glyphicon-user"></i>
 		</span>
 		<input class="form-control" id="username" size="30" MaxLength="30" placeholder="Username" name="username" value="{{ username }}" type="text" autofocus autocomplete="on">
-
 	      </div>
 	    </div>
 	    <div class="form-group">
@@ -72,8 +71,6 @@
 	    <div class="form-group">
 	      <div class="input-group">
 	      <span class="input-group-addon">
-
-
 	      <select size="1" name="Institution_Code" style="font-size: 10pt; font-family: Calibri; height: 34px;width: 230px">
               {%  for ins in institutes %}
                 <option value="{{ ins.institution_code }}">{{ ins.alias }}</option>
@@ -85,6 +82,8 @@
 	      </div>
 	      {% endcomment %}
 	      <div class="form-group">
+          <input type="hidden" id="td_checkTrusted" data-url="{% url 'td_checkTrusted' %}">
+          <input type="hidden" id="td_securedevice" data-url="{% url 'td_securedevice' %}">
 	      <input type="submit" class="btn btn-lg btn-success btn-block" value="Trust Device">
 	      </div>
 	      </div>
@@ -94,8 +93,6 @@
       {% endif %}
 	      </div>
 	      <div class="panel-footer ">
-
-
 	      </div>
               </div>
 	      </div>

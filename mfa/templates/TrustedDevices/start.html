@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% block head %}
 {% load static %}
-
-
     <link href="{% static 'mfa/css/mfa.css' %}" rel="stylesheet">
     <link href="{% static 'mfa/css/row.css' %}" rel="stylesheet">
     <script type="application/javascript" src="{% static 'mfa/js/TrustedDevices/start.js' %}"></script>
-    <script type="text/javascript"></script>
 {% endblock %}
 {% block content %}
       <br/>
     <br/>
     <div class="container">
+        <input type="hidden" id="td_sendemail" data-url="{% url 'td_sendemail' %}">
+        <input type="hidden" id="td_trust_device" data-url="{% url 'td_trust_device' %}">
+        <input type="hidden" id="td_get_useragent" data-url="{% url 'td_get_useragent' %}">
+        <input type="hidden" id="mfa_home" data-url="{% url 'mfa_home' %}">
         <div class="col-md-6 col-md-offset-3" id="two-factor-steps">
             <div class="row" align="center">
                 <h4>Add Trusted Device</h4>
             </div>
-
     <div class="row" >
         {%  if not_allowed %}
             <div class="alert alert-danger">You can't add any more devices, you need to remove previously trusted devices first.</div>
@@ -25,12 +25,11 @@
     <h5>Steps:</h5>
         <ol>
             <li>Using your mobile/table, open Chrome/Firefox.</li>
-            <li>Go to <b>{{ HOST }}{{ BASE_URL }}devices/add</b>&nbsp;&nbsp;<a id="send-email-trusted" href="javascript:void(0)" title="Send to my email" {% comment %} onclick="sendEmail()"  {% endcomment %}><i class="fas fa-paper-plane"></i></a></li> 
+            <li>Go to <b>{{ HOST }}{{ BASE_URL }}devices/add</b>&nbsp;&nbsp;<a id="send-email-trusted" href="#" title="Send to my email" {% comment %} onclick="sendEmail()"  {% endcomment %}><i class="fas fa-paper-plane"></i></a></li> 
             <li>Enter your username & following 6 digits<br/>
                 <span style="font-size: 16px;font-weight: bold; margin-left: 50px">{{ key|slice:":3" }} - {{ key|slice:"3:" }}</span>
             </li>
             <li>This window will ask to confirm the device.</li>
-
         </ol>
     {% endif %}
     </div>

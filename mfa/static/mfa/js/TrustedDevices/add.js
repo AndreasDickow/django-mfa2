@@ -8,21 +8,22 @@ document.addEventListener('DOMContentLoaded', function () {
         alert("Please agree to the statement first");
         return false;
 });
-}),
+    function checkTrusted() {
+        $.ajax({
+            url:$('input#td_checkTrusted').data('url'),
+            success:function (data) {
+                if (data == "OK")
+                    window.location.href=$('input#td_securedevice').data('url');
+                else
+                    setTimeout(checkTrusted(),2000)
+            }
 
-function checkTrusted() {
-    $.ajax({
-        url:"{% url 'td_checkTrusted' %}",
-        success:function (data) {
-            if (data == "OK")
-                window.location.href="{% url 'td_securedevice' %}";
-            else
-                setTimeout('checkTrusted()',2000)
-        }
+        })
 
-    })
+    }
+})
 
-}
+
 
 
 
