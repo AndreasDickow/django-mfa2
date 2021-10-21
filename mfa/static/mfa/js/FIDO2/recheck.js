@@ -40,7 +40,7 @@ body:res,
   }
   else {
       $("#msgdiv").addClass("alert alert-danger").removeClass("alert-success")
-        $("#msgdiv").html("Verification Failed as " + res.message + ", <a href='javascript:void(0)' onclick='authen())'> try again</a> or <a href='javascript:void(0)' onclick='history.back()'> Go Back</a>")
+        $("#msgdiv").html("Verification Failed as " + res.message + ", <a href='#' onclick='authen())'> try again</a> or <a href='#' onclick='history.back()'> Go Back</a>")
 
         if(mode === "recheck"){
         mfa_failed_function();
