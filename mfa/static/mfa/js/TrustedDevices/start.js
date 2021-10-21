@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })});
 }),
 function failedMFA() {
-    $("#modal-body").html("<div class='alert alert-danger'>Failed to validate you, please <a href='javascript:void(0)' onclick='getUserAgent()'>try again</a></div>")
+    $("#modal-body").html("<div class='alert alert-danger'>Failed to validate you, please <a href='#' onclick='getUserAgent()'>try again</a></div>")
 }
 function checkMFA() {
     recheck_mfa(trustDevice,failedMFA,true)
@@ -69,7 +69,7 @@ $(document).ready(getUserAgent())
 //     })
 // }
 // function failedMFA() {
-//     $("#modal-body").html("<div class='alert alert-danger'>Failed to validate you, please <a href='javascript:void(0)' onclick='getUserAgent()'>try again</a></div>")
+//     $("#modal-body").html("<div class='alert alert-danger'>Failed to validate you, please <a href='#' onclick='getUserAgent()'>try again</a></div>")
 // }
 // function checkMFA() {
 //     recheck_mfa(trustDevice,failedMFA,true)

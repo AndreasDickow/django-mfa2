@@ -1,5 +1,51 @@
+function errorMessage (reason) {
+  var existingDiv = document.getElementById('res');
+  existingDiv.innerHTML="<div class='alert alert-danger'>Registration Failed as " + reason + "</div> ";
+  addBeginButton('Try Again');
+  addHomeLink('Go to Security Home');
+}
+
+function successMessage() {
+  var existingDiv = document.getElementById('res');
+  existingDiv.innerHTML="<div class='alert alert-success'>Registered Successfully</div>";
+  addHomeLink(str(formData.get('success')));
+}
+
+function addBeginButton(label){
+  var beginButton = $('<button>' + label + '</button>').attr( {
+    id: 'begin_id',
+    class: 'btn btn-success paddingr30',
+    title: label,
+  });
+  $(beginButton).appendTo('#res');
+  if (beginButton) {
+    beginButton[0].addEventListener('mouseup', function e() {
+      begin_reg();
+    })
+  }
+}
+
+function addHomeLink(label){
+  var homeLink = $('<a>'+ label +'</a>').attr({
+    id: 'go_home_link',
+    class: 'btn btn-light',
+    title: label,
+  });
+  $(homeLink).appendTo('#res');
+  if (homeLink) {
+    var formData = getFormData();
+    homeLink[0].addEventListener('mouseup', function e() {
+      $("#go_home_link").attr('href', formData.get('redirect'));
+    })
+  }
+}
+
+function getFormData(){
+  return new FormData(document.getElementById('fido2_form'));
+}
+
 function begin_reg(){
-    var formData = new FormData(document.getElementById('fido2_form')); 
+    var formData = getFormData(); 
     formData.append('rbegin', $('#id_begin').attr('name'));
     fetch(formData.get('rbegin'),{}).then(function(response) {
       if(response.ok)
@@ -28,25 +74,24 @@ function begin_reg(){
     }).then(function (res)
         {
       if (res["status"] =='OK')
-            $("#res").html("<div class='alert alert-success'>Registered Successfully, <a href='"+formData.get('redirect')+"'> "+formData.get('success')+"</a></div>")
+          successMessage();
+            // comment $("#res").html("<div class='alert alert-success'>Registered Successfully, <a href='"+formData.get('redirect')+"'> "+formData.get('success')+"</a></div>")
         else
-            $("#res").html("<div class='alert alert-danger'>Registration Failed as " + res["message"] + ", <a href='javascript:void(0)' onclick='begin_reg()'> try again or <a href='"+formData.get('home')+"'> Go to Security Home</a></div>")
-
-
+          var reason = res["message"];
+          errorMessage(reason);
     }, function(reason) {
-       $("#res").html("<div class='alert alert-danger'>Registration Failed as " +reason +", <a href='javascript:void(0)' onclick='begin_reg()'> try again </a> or <a href='"+formData.get('home')+"'> Go to Security Home</a></div>")
+        errorMessage(reason);
     })
     }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // $(document).ready(function (){
-        ua=new UAParser().getResult()
-        if (ua.browser.name == "Safari")
-        {
-                $("#res").html("<button class='btn btn-success' onclick='begin_reg()'>Start...</button>")
-        }
-        else
-        {
-            setTimeout(begin_reg, 500)
-        }
-    })
+    ua=new UAParser().getResult()
+    if (ua.browser.name == "Safari")
+    {
+      addBeginButton('Start');
+    }
+    else
+    {
+      setTimeout(begin_reg, 500)
+    }
+})
