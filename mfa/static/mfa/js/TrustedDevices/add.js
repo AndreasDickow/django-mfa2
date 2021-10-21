@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     checkTrusted();
-
     $( "#formLogin" ).submit(function checkFlag( event ) {
-        if ($("#agree").is(":checked"))
-        return true;
-        else
-        alert("Please agree to the statement first");
-        return false;
+        if ($("#agree").is(":checked")) {
+            return true; 
+        }
+        else {
+            alert("Please agree to the statement first");
+            return false;
+        }
 });
+
     function checkTrusted() {
         $.ajax({
             url:$('input#td_checkTrusted').data('url'),
