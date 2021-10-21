@@ -14,7 +14,7 @@
     <br/>
     <div class="container">
     <div class="row">
-        <div align="center">
+        <div>
             <div class="btn-group">
             <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                 {% trans 'Add Method' %}&nbsp;<span class="caret"></span>
@@ -67,11 +67,11 @@
                <td>{% if key.key_type in HIDE_DISABLE %}
                    ----
                    {% else %}
-                    <a href="javascript:void(0)" value="{{ key.id }}", name="{{ key.key_type }}", url="{% url 'mfa_delKey' %}" id="delete-key-mfa"> <span class="fa fa-trash"></span></a></td> {% comment %} a href="javascript:void(0)" onclick="deleteKey({{ key.id }},'{{ key.key_type }}','{% url 'mfa_delKey' %}')" {% endcomment %}
+                    <a href="#" value="{{ key.id }}", name="{{ key.key_type }}", url="{% url 'mfa_delKey' %}" id="delete-key-mfa"> <span class="fa fa-trash"></span></a></td> {% comment %} a href="javascript:void(0)" onclick="deleteKey({{ key.id }},'{{ key.key_type }}','{% url 'mfa_delKey' %}')" {% endcomment %}
                     {% endif %}
            </tr>
        {% empty %}
-           <tr><td colspan="7" align="center">{% trans 'You did not have any keys yet.' %}</td> </tr>
+           <tr><td colspan="7">{% trans 'You did not have any keys yet.' %}</td> </tr>
        {% endfor %}
         </table>
     </div>
