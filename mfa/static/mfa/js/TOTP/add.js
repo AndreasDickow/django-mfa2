@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// var key="";
+// comment var key="";
 // $(document).ready(function addToken() {
 //     $.ajax({
 //         "url":"{% url 'get_new_otop' %}",dataType:"JSON",

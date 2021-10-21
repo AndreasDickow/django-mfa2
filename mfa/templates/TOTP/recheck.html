@@ -43,7 +43,7 @@
 
                                         <div class="form-group">
 
-                                            <input id="recheck-send-totp" type="{% if mode == "auth" %}submit{% elif mode == 'recheck' %}button{% endif %}" class="btn btn-lg btn-success btn-block" value="Sign in">
+                                            <input id="recheck-send-totp" data-url="{% url 'totp_recheck' %}" type="{% if mode == "auth" %}submit{% elif mode == 'recheck' %}button{% endif %}" class="btn btn-lg btn-success btn-block" value="Sign in">
                                                 {% comment %}
                                                     {% if mode == "recheck" %}onclick="send_totp()" {% endif %}
                                                 {% endcomment %}
