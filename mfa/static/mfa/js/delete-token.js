@@ -62,7 +62,7 @@ function deleteButtonListener() {
                     xhrFields: {
                         withCredentials: true
                     },
-                    data:{"id":id},
+                    data:{"csrfmiddlewaretoken":document.querySelector("[name='csrfmiddlewaretoken']").value,"id":id},
                     success:function (data) {
                         alert(data)
                         window.location.reload();
