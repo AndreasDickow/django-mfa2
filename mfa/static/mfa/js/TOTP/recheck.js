@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .addEventListener('click', function send_totp() { 
                 if($(this).attr("mode")=="recheck"){
                     var dataurl = $("#recheck-send-totp").attr("data-url");
+                    var form = document.getElementById("formLogin");
                     var formData = new FormData(form);
                     $.ajax({"url":dataurl, method:"POST",dataType:"JSON",
                         data:{"csrfmiddlewaretoken":formData.get('csrf_token'),"otp":$("#otp").val()},

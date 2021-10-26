@@ -12,7 +12,7 @@
                     <strong>One Time Password</strong>
                 </div>
                 <div class="panel-body">
-                    <FORM METHOD="POST" ACTION="{% url 'totp_auth' %}" Id="formLogin" onSubmit="" name="FrontPage_Form1">
+                    <FORM METHOD="POST" ACTION="{% url 'totp_auth' %}" id="formLogin" onSubmit="" name="FrontPage_Form1">
                         {% csrf_token %}
                         {%  if invalid %}
                             <div class="alert alert-danger">
