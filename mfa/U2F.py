@@ -19,17 +19,15 @@ from django.utils.translation import gettext_lazy as _
 
 transdict = {
     # modal.html
-    "close": _("Schließen"), #{% trans 'Close' %}
-
+    "close": _("Schließen"),
     # U2F/Add.html
-    "adding": _("Sicherheitsschlüssel hinzufügen"),# {% trans 'Adding Security Key' %}
-    "added_successfully": _("Ihr Gerät wurde erfolgreich hinzugefügt."), # {% trans 'Your device is added successfully.' %}
-    "flashing": _("Ihr Sicherheitsschlüssel sollte jetzt blinken, bitte drücken Sie auf die Taste."),# {% trans 'Your secure Key should be flashing now, please press on button.' %}
-
+    "adding": _("Sicherheitsschlüssel hinzufügen"),
+    "added_successfully": _("Ihr Gerät wurde erfolgreich hinzugefügt."),
+    "flashing": _("Ihr Sicherheitsschlüssel sollte jetzt blinken, bitte drücken Sie auf die Taste."),
     # U2F/recheck.html
-    "flashing": _("Ihr Sicherheitsschlüssel sollte jetzt blinken, bitte drücken Sie auf die Taste."),# {% trans 'Your secure Key should be flashing now, please press on button.' %}
-    "secure_context": _("U2F muss in einem sicheren Kontext funktionieren."),# {% trans "U2F must work under secure context" %}
-    "select_another": _("Andere Methode wählen"),# {% trans 'Select Another Method' %}
+    "flashing": _("Ihr Sicherheitsschlüssel sollte jetzt blinken, bitte drücken Sie auf die Taste."),
+    "secure_context": _("U2F muss in einem sicheren Kontext funktionieren."),
+    "select_another": _("Andere Methode wählen"),
 }
 
 def recheck(request):

@@ -20,19 +20,17 @@ from django.utils.translation import gettext_lazy as _
 
 transdict = {
     # modal.html
-    "close": _("Schließen"), #{% trans 'Close' %}
-
+    "close": _("Schließen"),
     # FIDO/Add.html
-    "security_fido2_key": _("FIDO2 Sicherheitsschlüssel"), #{% trans 'FIDO2 Security Key' %}
-    "added_successfully": _("Ihr Gerät wurde erfolgreich hinzugefügt."), # {% trans 'Your device is added successfully.' %}
-    "confirm_identity": _("Ihr Browser sollte Sie auffordern, Ihre Identität zu bestätigen"),     # {% trans 'Your browser should ask you to confirm you identity.' %}
-
+    "security_fido2_key": _("FIDO2 Sicherheitsschlüssel"),
+    "added_successfully": _("Ihr Gerät wurde erfolgreich hinzugefügt."),
+    "confirm_identity": _("Ihr Browser sollte Sie auffordern, Ihre Identität zu bestätigen"),
     # FIDO2 recheck.html
-    "security_key": _("Sicherheitsschlüssel"), #{% trans 'Security Key' %}
-    "welcome_back": _("Willkommen zurück"),# {% trans 'Welcome back' %}
-    "not_me": _("Nicht ich"),# {% trans 'Not me' %}
-    "press_button": _("Drücken Sie bitte die Taste auf Ihrem Sicherheitsschlüssel, um zu beweisen, dass Sie es sind."),# {% trans 'please press the button on your security key to prove it is you.' %}
-    "select_another": _("Andere Methode wählen"),# {% trans 'Select Another Method' %}
+    "security_key": _("Sicherheitsschlüssel"),
+    "welcome_back": _("Willkommen zurück"),
+    "not_me": _("Nicht ich"),
+    "press_button": _("Drücken Sie bitte die Taste auf Ihrem Sicherheitsschlüssel, um zu beweisen, dass Sie es sind."),
+    "select_another": _("Andere Methode wählen"),
 }
 
 def recheck(request):
