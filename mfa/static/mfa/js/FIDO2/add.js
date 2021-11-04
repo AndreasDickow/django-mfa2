@@ -75,7 +75,6 @@ function begin_reg(){
         {
       if (res["status"] =='OK')
           successMessage();
-            // comment $("#res").html("<div class='alert alert-success'>Registered Successfully, <a href='"+formData.get('redirect')+"'> "+formData.get('success')+"</a></div>")
         else
           var reason = res["message"];
           errorMessage(reason);

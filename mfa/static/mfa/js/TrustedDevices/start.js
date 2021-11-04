@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
 }),
 function failedMFA() {
     addAgainButton();
-    //comment $("#modal-body").html("<div class='alert alert-danger'>Failed to validate you, please <a href='#' onclick='getUserAgent()'>try again</a></div>")
 }
 function checkMFA() {
     recheck_mfa(trustDevice,failedMFA,true)
@@ -47,7 +46,6 @@ function getUserAgent() {
                 $("#modal-title").html("Confirm Trusted Device")
                 $("#actionBtn").remove();
                 addTrustDeviceButton();
-                // comment $("#modal-footer").prepend("<button id='actionBtn' class='btn btn-success' onclick='checkMFA()'>Trust Device</button>")
                 $("#modal-body").html(data)
                 $("#popUpModal").modal()
             }
