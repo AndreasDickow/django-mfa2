@@ -13,19 +13,19 @@
      <div class="container">
      <div class="panel panel-default">
       <div class="panel-heading">
-	      <strong> {% trans 'FIDO2 Security Key' %}</strong>
+	      <strong>{{transdict.security_fido2_key}}</strong>
       </div>
       <div class="panel-body">
         <form action="#" id="fido2_form" method="post" hidden>
           <input type=hidden value="{{ redirect_html }}" id="id_redirect" name="redirect">
-          <input type=hidden value="{% trans 'Your device is added successfully.' %}" id="id_success" name="success">
+          <input type=hidden value="{{transdict.added_successfully}}" id="id_success" name="success">
           <input type=hidden value="{% url 'fido2_begin_reg' %}" id="id_begin" name="rbegin">
           <input type=hidden value="{% url 'fido2_complete_reg' %}" id="id_complete" name="complete">
           
       </form>
 
     <div class="row alert alert-pr" id="res">
-    <p class="success">{% trans 'Your browser should ask you to confirm you identity.' %}</p>
+    <p class="success">{{transdict.confirm_identity}}</p>
 
     </div>
         </div>

@@ -11,16 +11,16 @@
     <div class="container">
         <div class="col-md-6 col-md-offset-3" id="two-factor-steps">
             <div class="row">
-                <h4>{% trans 'Adding Security Key' %}</h4>
+                <h4>{{transdict.adding}}</h4>
             </div>
             <form action="{% url 'bind_u2f' %}" id="u2f_form" method="post" hidden>
                 {{ csrf_token }}
                 <input type=hidden value="{{ token|safe }}" id="id_token" name="token">
                 <input type=hidden value="{{ redirect_html }}" id="id_redirect" name="redirect">
-                <input type=hidden value="{% trans 'Your device is added successfully.' %}" id="id_success" name="success">
+                <input type=hidden value="{{transdict.added_successfully}}" id="id_success" name="success">
             </form>
     <div class="row">
-    <p class="success">{% trans 'Your secure Key should be flashing now, please press on button.' %}</p>
+    <p class="success">{{transdict.flashing}}</p>
 
     </div>
         </div>

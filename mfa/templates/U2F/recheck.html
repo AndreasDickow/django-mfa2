@@ -13,7 +13,7 @@
       <div class="panel-body">
         <div class="row">
           <div class="paragraph col-md-10 col-md-offset-1" id="main_paragraph" align="center"> <!--COMMENT: style="padding-left: 15px"-->
-            <p class="success" >{% trans "Your key should be flashing now, please press the button." %}</p>
+            <p class="success" >{{transdict.flashing}}</p>
             {% if mode == "auth" %}
               <form id="u2f_login" action="{% url 'u2f_verify' %}" method="post">
             {% elif mode == "recheck" %}
@@ -24,7 +24,7 @@
               <input type=hidden value="{{ token|safe }}" id="id_token" name="token">
               <input type=hidden value="{% url 'u2f_recheck' %}" id="id_recheck" name="recheck">
               <input type=hidden value="{{ mode }}" id="id_recheck" name="mode">
-              <input type=hidden value="{% trans "U2F must work under secure context" %}" id="id_protocol_message" name="protocol_message">
+              <input type=hidden value="{{transdict.secure_context}}" id="id_protocol_message" name="protocol_message">
               </form>
           </div>
         </div>
@@ -33,7 +33,7 @@
       <div class="row">
         <div class="paragraph">
           {% if request.session.mfa_methods|length > 1 %}
-              <a href="{%  url 'mfa_methods_list' %}">{% trans "Select Another Method" %}</a>
+              <a href="{%  url 'mfa_methods_list' %}">{{transdict.select_another}}</a>
           {% endif %}
         </div>
       </div>

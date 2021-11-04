@@ -8,20 +8,20 @@
 <div class="col-sm-10 col-sm-offset-1 col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 <div class="panel panel-default">
       <div class="panel-heading">
-	      <strong>{% trans 'Security Key' %}</strong>
+	      <strong>{{transdict.security_key}}</strong>
       </div>
       <div class="panel-body">
 
               <div class="row">
             <div class="col-md-10 col-md-offset-1 paragraph" id="main_paragraph">
                 {% if mode == "auth" %}
-                {% trans 'Welcome back' %} {% comment %}<img src="{% url 'getUserImage' request.session.base_username  %}" title="{{ request.session.base_username }}" style="padding: 3px;height: 50px" class="img-circle"/>{% endcomment %} {{ request.session.base_username }}<br/>
-                    <a href="{% url 'mfa_reset_cookie' %}">{% trans 'Not me' %}</a>
+                {{transdict.welcome_back}}{% comment %}<img src="{% url 'getUserImage' request.session.base_username  %}" title="{{ request.session.base_username }}" style="padding: 3px;height: 50px" class="img-circle"/>{% endcomment %} {{ request.session.base_username }}<br/>
+                    <a href="{% url 'mfa_reset_cookie' %}">{{transdict.not_me}}</a>
                     <br/>
 
             {% endif %}
                 <div id="res">
-                    <p class="success">{% trans 'please press the button on your security key to prove it is you.' %}</p>
+                    <p class="success">{{transdict.press_button}}</p>
                 </div>
                 <div id="msgdiv"></div>
                 {% if mode == "auth" %}
@@ -41,7 +41,7 @@
           <div class="paragraph">
 
             {% if request.session.mfa_methods|length > 1 %}
-                <a href="{%  url 'mfa_methods_list' %}">{% trans 'Select Another Method' %}</a>
+                <a href="{%  url 'mfa_methods_list' %}">{{transdict.select_another}}</a>
             {% endif %}
           </div>
         </div>
