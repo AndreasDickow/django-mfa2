@@ -12,6 +12,12 @@ from .views import login
 import datetime
 from django.utils import timezone
 import random
+from django.utils.translation import gettext_lazy as _
+
+transdict = {
+    "close": _("Schließen"),
+}
+
 def verify_login(request,username,token):
     for key in User_Keys.objects.filter(username=username,key_type = "TOTP"):
         totp = pyotp.TOTP(key.properties["secret_key"])
@@ -74,4 +80,6 @@ def verify(request):
 @never_cache
 def start(request):
     """Start Adding Time One Time Password (TOTP)"""
-    return render(request,"TOTP/Add.html",get_redirect_url())
+    context=get_redirect_url()
+    context["transdict"]=transdict
+    return render(request,"TOTP/Add.html",context)

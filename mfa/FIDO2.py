@@ -16,13 +16,31 @@ from .views import login, reset_cookie
 import datetime
 from .Common import get_redirect_url
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
+transdict = {
+    # modal.html
+    "close": _("Schließen"), #{% trans 'Close' %}
+
+    # FIDO/Add.html
+    "security_fido2_key": _("FIDO2 Sicherheitsschlüssel"), #{% trans 'FIDO2 Security Key' %}
+    "added_successfully": _("Ihr Gerät wurde erfolgreich hinzugefügt."), # {% trans 'Your device is added successfully.' %}
+    "confirm_identity": _("Ihr Browser sollte Sie auffordern, Ihre Identität zu bestätigen"),     # {% trans 'Your browser should ask you to confirm you identity.' %}
+
+    # FIDO2 recheck.html
+    "security_key": _("Sicherheitsschlüssel"), #{% trans 'Security Key' %}
+    "welcome_back": _("Willkommen zurück"),# {% trans 'Welcome back' %}
+    "not_me": _("Nicht ich"),# {% trans 'Not me' %}
+    "press_button": _("Drücken Sie bitte die Taste auf Ihrem Sicherheitsschlüssel, um zu beweisen, dass Sie es sind."),# {% trans 'please press the button on your security key to prove it is you.' %}
+    "select_another": _("Andere Methode wählen"),# {% trans 'Select Another Method' %}
+}
 
 def recheck(request):
     """Starts FIDO2 recheck"""
     context = csrf(request)
     context["mode"] = "recheck"
     request.session["mfa_recheck"] = True
+    context["transdict"]=transdict
     return render(request, "FIDO2/recheck.html", context)
 
 
@@ -80,6 +98,7 @@ def start(request):
     """Start Registeration a new FIDO Token"""
     context = csrf(request)
     context.update(get_redirect_url())
+    context["transdict"]=transdict
     return render(request, "FIDO2/Add.html", context)
 
 

@@ -7,6 +7,11 @@ from django.template.context_processors import csrf
 from .models import *
 import user_agents
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+transdict = {
+    "close": _("Schließen"),
+}
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     x=''.join(random.choice(chars) for _ in range(size))
@@ -98,6 +103,7 @@ def start(request):
     try:
         if td==None: td=User_Keys.objects.get(id=request.session["td_id"])
         context={"key":td.properties["key"]}
+        context["transdict"]=transdict
     except:
         del request.session["td_id"]
         return start(request)

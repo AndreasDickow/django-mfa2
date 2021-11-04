@@ -15,6 +15,22 @@ from .views import login
 from .Common import get_redirect_url
 import datetime
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+transdict = {
+    # modal.html
+    "close": _("Schließen"), #{% trans 'Close' %}
+
+    # U2F/Add.html
+    "adding": _("Sicherheitsschlüssel hinzufügen"),# {% trans 'Adding Security Key' %}
+    "added_successfully": _("Ihr Gerät wurde erfolgreich hinzugefügt."), # {% trans 'Your device is added successfully.' %}
+    "flashing": _("Ihr Sicherheitsschlüssel sollte jetzt blinken, bitte drücken Sie auf die Taste."),# {% trans 'Your secure Key should be flashing now, please press on button.' %}
+
+    # U2F/recheck.html
+    "flashing": _("Ihr Sicherheitsschlüssel sollte jetzt blinken, bitte drücken Sie auf die Taste."),# {% trans 'Your secure Key should be flashing now, please press on button.' %}
+    "secure_context": _("U2F muss in einem sicheren Kontext funktionieren."),# {% trans "U2F must work under secure context" %}
+    "select_another": _("Andere Methode wählen"),# {% trans 'Select Another Method' %}
+}
 
 def recheck(request):
     context = csrf(request)
@@ -22,6 +38,7 @@ def recheck(request):
     s = sign(request.user.username)
     request.session["_u2f_challenge_"] = s[0]
     context["token"] = s[1]
+    context["transdict"]=transdict
     request.session["mfa_recheck"]=True
     return render(request,"U2F/recheck.html", context)
 
@@ -77,6 +94,7 @@ def start(request):
     request.session['_u2f_enroll_'] = enroll.json
     context=csrf(request)
     context["token"]=simplejson.dumps(enroll.data_for_client)
+    context["transdict"]=transdict
     context.update(get_redirect_url())
     return render(request,"U2F/Add.html",context)
 
